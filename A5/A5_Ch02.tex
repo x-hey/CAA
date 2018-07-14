@@ -1,0 +1,250 @@
+\documentclass[utf8]{ctexart}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usepackage[alignpreced]{actuarialsymbol}
+
+\newcommand{\RN}[1]{%
+  \textup{\uppercase\expandafter{\romannumeral#1}}%
+}
+\def\lt{<}
+\def\gt{>}
+
+\begin{document}
+\section{第二章}
+
+和答案对不上的有第3、19、21、23题
+
+没做出来的有第16题
+
+\begin{enumerate}
+    % 第一题
+    \item \begin{align*}
+    \Ax*{\endow{45}{20}} & = \Ax*{\term{45}{20}} + \Ax{\pureendow{45}{20}}\\
+    & = \int_{0}^{20} e^{-\delta t}~\px[t]{45}~\mu_{45+t}~dt + e^{-20t}~\px[20]{45}\\
+    & = 0.39814
+    \end{align*}
+
+    其中 $\px[t]{45}~\mu_{45+t} = -\frac{d}{dt}\frac{l_{45+t}}{l_{45}} = \frac{1}{58}$，$\px[20]{45} = \frac{l_{65}}{l_{45}} = 0.655172$.
+
+    % 第二题
+    \item $\Ax*{\term{40}{10}} = \int_{0}^{10} e^{-\delta t}~\px[t]{40}~\mu_{40+t}~dt = 0.125330$
+
+    其中 $\px[t]{40}~\mu_{40+t} = 1/60$
+
+    % 第三题
+    \item $E[Z] = \int_{0}^{50} v^{t}~b_{t}~\px[t]{50}~\mu_{50+t}~dt = \frac{1}{50}\int_{0}^{50} 1.01^{-t}(1000-0.1t^{2})~dt = 730.18$
+
+    其中 $\px[t]{50}~\mu_{50+t} = 1/50$
+
+    % 第四题
+    \item $E[Z] = \int_{0}^{75} e^{-\delta t}~g(t)~dt = (1-e^{-75\delta})/75\delta = 0.260395$
+
+    同理 $E[Z^{2}] = (1-e^{-150\delta})/150\delta = 0.133260$，那么 $Var[Z] = E[Z^{2}] - (E[Z])^{2} = 0.065454$
+
+    % 第五题
+    \item $$\begin{array}{cccccc}
+    \hline
+    k & v^{k+1}     & b_{k+1} & \px[k]{x} & \qx{x+k} & v^{k+1}~b_{k+1}~\px[k]{x}~\qx{x+k}\\
+    \hline
+    0 & 0.943396 & 300000  & 1.0000    & 0.02     & 5660.3774\\
+    1 & 0.889996 & 350000  & 0.9800    & 0.04     & 12210.7512\\
+    2 & 0.839619 & 400000  & 0.9408    & 0.06     & 18957.9317\\
+    \hline
+    \end{array}$$
+
+    $E[Z] = \sum_{k=0}^{2} v^{k+1}~b_{k+1}~\px[k]{x}~\qx{x+k} = 36829.06$
+
+    % 第六题
+    \item $$\begin{array}{cccccc}
+    \hline
+    k & v^{k+1}     & b_{k+1} & \px[k]{x} & \qx{x+k} & v^{k+1}~b_{k+1}~\px[k]{x}~\qx{x+k}\\
+    \hline
+    0     & 0.943396 & 1     & 1.0000 & 0.1500 & 0.141509 \\
+    1     & 0.881679 & 1     & 0.8500 & 0.2353 & 0.176336 \\
+    2     & 0.816369 & 1     & 0.6500 & 0.3846 & 0.204092 \\
+    \hline
+    \end{array}$$
+
+    $E[Z] = \sum_{k=0}^{2} v^{k+1}~b_{k+1}~\px[k]{x}~\qx{x+k} = 0.521937$
+
+    % 第七题
+    \item $$\begin{array}{ccccccc}
+    \hline
+    k & v^{k+1}     & b_{k+1} & \px[k]{x} & \qx{x+k} & v^{k+1}~b_{k+1})^{2}~\px[k]{x}~\qx{x+k} & (v^{k+1}~b_{k+1}~\px[k]{x}~\qx{x+k}\\
+    \hline
+    0     & 0.952381 & 1     & 1        & 0.021546 & 0.020520 & 0.019543 \\
+    1     & 0.907029 & 1     & 0.978454 & 0.027202 & 0.024141 & 0.021897 \\
+    \hline
+    \end{array}$$
+
+    $E[Z] = \sum_{k=0}^{1} v^{k+1}~b_{k+1}~\px[k]{x}~\qx{x+k} = 0.044662$
+
+    $E[Z^{2}] = \sum_{k=0}^{1} (v^{k+1}~b_{k+1})^{2}~\px[k]{x}~\qx{x+k} = 0.041440$
+
+    $Var[Z] = E[Z^{2}] - (E[Z])^{2} = 0.039445$
+
+    % 第八题
+    \item （例2-7）$\Ax{x}[(4)]\approx \frac{i}{i^{(4)}}\Ax{x} = 0.251771$
+
+    其中 $1+i = (1+i^{(4)}/4)^{4}\implies i^{(4)} = 0.058695$，$\Ax{x} = \sum_{k=0}^{\infty} v^{k+1}~\px[k]{x}~\qx{x+k} = 0.246295$
+
+    % 第九题
+    \item i. $z = 0$
+
+    $F_{Z}(z) = P\{Z=0\} = P\{T\le 10\} = \qx[10]{35} = 1-\exp(-\int_{0}^{10} \mu~dt) = 0.451188$
+
+    ii. $0\lt z\le v^{10}$
+
+    $F_{Z}(z) = P\{v^{T}\le z\} + P\{Z=0\} = P\{T\ge\ln z/(-\delta)\} + 0.451188 = \px[t]{x} + 0.451188 = e^{-0.06t} + 0.451188$，其中 $t = \ln z/(-\delta)$
+
+    iii. $v^{10}\lt z$
+
+    $F_{Z}(z) = 1$
+
+    综上
+    $$F_{Z}(z) = \begin{cases}
+        0.451188, & z = 0\\
+        e^{-0.06t} + 0.451188, & 0\lt z\le v^{10}\\
+        1, & v^{10}\lt z
+    \end{cases}$$
+    $F_{Z}^{-1}(0.9) = 0.263092~(t=13.352520)$
+
+    % 第十题
+    \item \begin{align*}
+        \IbA*_{x} & = \int_{0}^{\infty} tv^{t}~\px[t]{x}~\mu_{x+t}~dt = \int_{0}^{\infty} te^{-\delta t}~\mu e^{-\mu t}~dt = \frac{\mu}{(\delta+\mu)^{2}}\\[2ex]
+        \Ax*[][2]{x} & = \int_{0}^{\infty} (v^{t})^{2}~\px[t]{x}~\mu_{x+t}~dt = \int_{0}^{\infty} e^{-2\delta t}~\mu e^{-\mu t}~dt = \frac{\mu}{2\delta + \mu}
+    \end{align*}
+    因为 $\Ax*[][2]{x} = 0.25$，解得 $\mu = 0.04$，所以 $\IbA*_{x} = 4$.
+
+    % 第十一题
+    \item \begin{align*}
+        F_{Z}(z) & = P\{Z\le z\} = P\{v^{T}\le z\} = P\{T\ge\ln z/(-\delta)\}\\
+        & = \px[t]{x} = (50-t)/50
+    \end{align*}
+    其中 $t = \ln z/(-\delta)$. $F_{Z}^{-1}(0.6) = 0.449329~(t=20)$
+
+    % 第十二题
+    \item 从下图可以看到 $\IA_{x}-\Ax{\term{x}{1}}$ 和 $\IA_{x+1} + \Ax{x+1}$ 对应的现金流相同，只不过前者折现到 $x$，后者折现到 $x+1$. 那么 $\IA_{x}-\Ax{\term{x}{1}} = \Ax{\pureendow{x}{1}}~[\IA_{x+1} + \Ax{x+1}]$，所以 $[\IA_{x}-\Ax{\term{x}{1}}]/[\IA_{x+1} + \Ax{x+1}] = \Ax{\pureendow{x}{1}}$.
+
+    \begin{tikzpicture}
+        \draw[->,thick] (-6,0) -- (6,0);
+
+        \node at (-6,0) [below=5pt] {$(x)$};
+        \foreach \x [evaluate=\x as \y using int(\x+5)] in {-5,-4,...,5}
+        	\draw[thick] (\x,0) -- (\x,5pt) node[below=5pt] {$\y$};
+
+        \node at (-6,0) [above=20pt] {$\IA_{x}$};
+        \foreach \x [evaluate=\x as \y using int(\x+5)] in {-4,...,4}
+        	 \node at (\x,0) [above=20pt] {$\y$};
+        \node at (5,0) [above=20pt] {$\cdots$};
+
+        \node at (-6,0) [above=40pt] {$\Ax{\term{x}{1}}$};
+        \node at (-4,0) [above=40pt] {$1$};
+
+        \node at (-6,0) [above=60pt] {$\Ax{x+1}$};
+        \foreach \x in {-3,...,4}
+        	 \node at (\x,0) [above=60pt] {$1$};
+        \node at (5,0) [above=60pt] {$\cdots$};
+
+        \node at (-6,0) [above=80pt] {$\IA_{x+1}$};
+        \foreach \x [evaluate=\x as \y using int(\x+4)] in {-3,...,4}
+        	 \node at (\x,0) [above=80pt] {$\y$};
+        \node at (5,0) [above=80pt] {$\cdots$};
+    \end{tikzpicture}
+
+    % 第十三题
+    \item $\DA_{\term{x}{5}} = 6\Ax{\term{x}{5}} - \IA_{\term{x}{5}} = 0.022081$
+
+    其中 $\IA_{\term{x}{5}} = \IA_{x} - \Ex[5]{x}~[5\Ax{x+5} + \IA_{x+5}] = 0.024809$，$\Ax{\endow{x}{5}} = \Ax{\term{x}{5}} + \Ax{\pureendow{x}{5}}\implies \Ax{\term{x}{5}} = 0.007815$
+
+    其中 $\Ex[5]{x} = \Ax{\pureendow{x}{5}} = v^{5}~\px[5]{x} = 0.752185$
+
+    % 第十四题
+    \item $\IA_{\term{40}{10}} = \IA_{40} - [20~\Ax[20|]{40} + {_{20|}}\IA_{40}]$
+
+    $\DA_{\term{x}{5}} = 21\Ax{\term{40}{20}} - \IA_{\term{40}{20}} = 0.64531$
+
+    其中 $\Ax{\term{40}{20}} = \Ax{40} - \Ax[20|]{40} = 0.10441$.
+
+    又 $a\times\IA_{\term{40}{20}} = 100\implies a = 64.63$，$b\times\DA_{\term{40}{20}} = 100\implies b = 154.96$. 所以 $64.63x\lt 154.96(20-x)\implies x\lt 14.1136$，即14年.
+
+    % 第十五题
+    \item 因为 $Z_{3} = Z_{1} + Z_{2}$，所以 $E[Z_{3}] = E[Z_{1}] + E[Z_{2}]$，$Var[Z_{3}] = Var[Z_{1}] + Var[Z_{2}] + 2Cov[Z_{1},Z_{2}]$. 已知 $E[Z_{2}]$ 和 $Var[Z_{2}]$，需要求 $E[Z_{1}]$、$Var[Z_{1}]$ 和 $Cov[Z_{1},Z_{2}]$.
+    \begin{align*}
+        E[Z_{1}] & = \int_{0}^{10} v^{t}~\px[t]{x}~\mu_{x+t}~dt = \int_{0}^{10} e^{-0.05t}~0.01e^{-0.01t}~dt = 0.078694\\
+        Var[Z_{1}] & = \int_{0}^{10} (v^{t})^{2}~\px[t]{x}~\mu_{x+t}~dt = \int_{0}^{10} e^{-0.1t}~0.01e^{-0.01t}~dt = 0.078694\\
+        Cov[Z_{1},Z_{2}] & = E[Z_{1}Z_{2}] - E[Z_{1}]E[Z_{2}] = -0.027543
+    \end{align*}
+
+    其中 $E[Z_{1}Z_{2}] = 0$. 那么 $E[Z_{3}] 0.428694$，$Var[Z_{3}] = 0.234658$.
+
+    % 第十六题
+    \item $F_{Z}(z) = P\{Z\le z\} = P\{(40-K)v^{T}\le z\} = $
+
+    % 第十七题
+    \item $Z = Tv^{T} = Te^{-0.05T}$，$Z' = e^{-0.05T} - 0.05Te^{-0.05} = 0\implies T = 20$，$Z$ 的最大值为 $7.35758$.
+
+    $Z'' = -0.05e^{-0.05T} - 0.05(e^{-0.05T} - 0.05Te^{-0.05}) = -0.1e^{-0.05T} + 0.025Te^{-0.05} = 0\implies T = 4$，证明 $Z$ 确实在 $T=20$ 时取最大值.
+
+    % 第十八题
+    \item $20000\Ax{\term{25}{40}} + P\Ax{\pureendow{20}{40}} + 10000\Ax[40|]{65} = P\implies P = 2000$.
+
+    其中 $\Ax{\pureendow{20}{40}} = v^{40}~\px[40]{25} = 0.16$
+
+    $\Ax{\term{25}{40}} = \Ax{25} - \Ax{\pureendow{20}{40}}\Ax{65} = 0.068$
+
+    $\Ax[40|]{65} = \Ax{\pureendow{20}{40}}\Ax{65} = 0.032$
+
+    % 第十九题
+    \item $$\begin{array}{ll}
+        Z_{1} = Tv^{T} & Z_{2} = (K+1)v^{K+1}\\
+        v^{1/2}Z_{1} = Tv^{T+1/2} & Z_{2}\approx (T+1/2)v^{T+1/2}
+    \end{array}$$
+
+    那么 $v^{T} = 2/v^{1/2}(Z_{2}-v^{1/2}Z_{1})$，则 $E[v^{T}] =  2/v^{1/2}(E[Z_{2}]-v^{1/2}E[Z_{1}])$，即 $\Ax*{x} = 2/v^{1/2}[\IA_{x}-v^{1/2}\IbA*_{x}] = 0.350730$
+
+    % 第二十题
+    \item \begin{align*}
+        \Ax{\term{45}{10}} & = \sum_{k=0}^{9} v^{k+1}~\qx[k|]{45} = v\qx{45} + \sum_{k=1}^{9} v^{k+1}~\px[k]{45}~\qx{45+k} = v\qx{45} + \sum_{k=1}^{9} v^{k+1}~\px[45]~\px[k-1]{46}~\qx{x+k}\\
+        \Ax{\term{45}{10}}['] & = \sum_{k=0}^{9} v^{k+1}~\qx[k|]{45}['] = v\qx{45}['] + \sum_{k=1}^{9} v^{k+1}~\px[k]{45}[']~\qx{45+k} = v\qx{45} + \sum_{k=1}^{9} v^{k+1}~\px{45}[']~\px[k-1]{46}~\qx{x+k}
+    \end{align*}
+    所以 $\Ax{\term{45}{10}}['] = 0.95\times 0.02 + 0.98/0.99\times 0.1405 = 0.158081$
+
+    % 第二十一题
+    \item \begin{align*}
+    P\{Z\gt 0.25\} & = P\{e^{-\delta T}\gt 0.25\} = P\{T\lt 34.66\}\\
+    & = \int_{0}^{34.66} \px[t]{x}~\mu_{x+t}~dt = \int_{0}^{10} 0.01e^{-0.01t}~dt + \int_{10}^{34.66} 0.02e^{-0.02t+0.1}~dt = 0.447444
+    \end{align*}
+
+    % 第二十二题
+    \item $\Ax[2|2]{[60]} = \Ex[2]{[60]}\Ax{\term{[60]+2}{2}} = 0.190258$
+
+    其中 $\Ex[2]{[60]} = v^{2}~\px[2]{[60]} = 0.763408$
+
+    $\Ax{\term{[60]+2}{2}} = v~\qx{[60]+2} + v^{2}~\px{[60]+2}~\qx{63} = 0.249222$
+
+    % 第二十三题
+    \item \begin{align*}
+        E[Z_{1}] & = 1000(v~\qx{49} + v^{2}~\px{49}~\qx{50}) = 27.055892\\
+        E[Z_{2}] & = 1000(v~\qx{49}['] + v^{2}~\px{49}[']~\qx{50}[']) = 45.033820\\
+        E[Z_{1}^{2}] & = 1000^{2}(v^{2}~\qx{49} + v^{4}~\px{49}~\qx{50}) = 24583.41893\\
+        E[Z_{2}^{2}] & = 1000^{2}(v^{2}~\qx{49}['] + v^{4}~\px{49}[']~\qx{50}[']) = 41087.4825\\
+        Var[Z_{1}] & = E[Z_{1}^{2}] - (E[Z_{1}])^{2} = 23851.39764\\
+        Var[Z_{2}] & = E[Z_{2}^{2}] - (E[Z_{2}])^{2} = 39059.43756\\
+        E[Z] & = E(E[Z_{i}~|~I]) = 30.651478\\
+        Var[Z] & = E(Var[Z_{i}~|~I]) + Var(E[Z_{i}~|~I]) = 26944.71857
+    \end{align*}
+
+    其中 $I = \begin{pmatrix} 1 & 2\\ 0.8 & 0.2\end{pmatrix}$.
+
+    初始金额 $= 1.649\times\sqrt{100\times 26944.71857} + 100\times 30.651478 = 5771.955988$
+
+    % 第二十四题
+    \item $Var[Z] = \Ax[][2]{51} - (\Ax{51})^{2} = 0.054849$
+
+    其中 $\Ax{51}-\Ax{50} = \Ax{51} - (v~\qx{50}+v~\px{50}~\Ax{51}) = 0.004\implies \Ax{51} = 0.601999$
+
+    $\Ax[][2]{51}-\Ax[][2]{50} = \Ax[][2]{51} - (v^{2}~\qx{50}+v^{2}~\px{50}~\Ax[][2]{51}) = 0.004\implies \Ax[][2]{51} = 0.417252$
+
+\end{enumerate}
+\end{document}
